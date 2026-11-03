@@ -6,6 +6,11 @@
 
 试玩、源码压缩包和讲解视频统一入口：[https://github.com/yukidrift2358-oss/CiJing/releases/tag/v0.15](https://github.com/yukidrift2358-oss/CiJing/releases/tag/v0.15)
 
+**策划讲解与全流程完整版（15 分 01 秒）**：
+https://github.com/yukidrift2358-oss/CiJing/releases/download/v0.15/CiJing-Complete-Showcase-v3.mp4
+
+前 5 分 30 秒为策划讲解，之后接完整流程演示。
+
 策划讲解（约 5 分半）：
 https://github.com/yukidrift2358-oss/CiJing/releases/download/v0.15/CiJing-Design-v3.mp4
 
