@@ -3,9 +3,24 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 namespace CiJing {
 public sealed class PropArtwork:MonoBehaviour,IPointerEnterHandler,IPointerExitHandler {
- public RectTransform art;public RawImage image;public bool Seen;public Text badge;bool hover;float initialY;Vector3 baseScale;
- void Start(){initialY=art.anchoredPosition.y;baseScale=art.localScale;}
- public void OnPointerEnter(PointerEventData e){hover=true;}public void OnPointerExit(PointerEventData e){hover=false;}
- void Update(){if(!art)return;float target=hover?1.055f:1;art.localScale=Vector3.Lerp(art.localScale,baseScale*target,Time.unscaledDeltaTime*10);image.color=Color.Lerp(image.color,hover?new Color(1,.98f,.91f,1):Color.white,Time.unscaledDeltaTime*8);if(badge)badge.text=Seen?"词笺已收入":"点击物件 · 寻迹";}
+ public RectTransform art;public RawImage image;public CanvasGroup annotation;public Text badge;
+ public bool Seen;public bool Focused{get{return hover;}}
+ bool hover;Material ink;
+ public void Initialize(){
+  var shader=Resources.Load<Shader>("PropInk");
+  if(!shader)throw new System.Exception("PropInk shader missing");
+  ink=new Material(shader);image.material=ink;
+  annotation.alpha=0;annotation.blocksRaycasts=false;annotation.interactable=false;
+ }
+ public void OnPointerEnter(PointerEventData e){hover=true;}
+ public void OnPointerExit(PointerEventData e){hover=false;}
+ void Update(){
+  annotation.alpha=Mathf.MoveTowards(annotation.alpha,hover?1:0,Time.unscaledDeltaTime*7);
+  annotation.blocksRaycasts=hover;annotation.interactable=hover;
+  if(ink)ink.SetFloat("_Focus",annotation.alpha);
+  if(badge)badge.text=Seen?"已收入词笺 · 点击重看":"点击查看 · 寻找词句";
+ }
+ void OnDisable(){hover=false;if(annotation)annotation.alpha=0;}
+ void OnDestroy(){if(ink)Destroy(ink);}
 }
 }
