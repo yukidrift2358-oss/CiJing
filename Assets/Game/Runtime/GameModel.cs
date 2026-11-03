@@ -24,12 +24,12 @@ public static class Content {
  new VerseLevel(1,"一 · 夜雨","窗外，疏落的雨滴落在檐下。","角是雨滴的清音：第一、四、七处各有一滴，其余停息。","角·短分别放第 1、4、7 位。不要把雨滴合成长声。","雨滴之间有空隙，才听得见庭院里的风。",3,0,0,3,0,0,3,0),
  new VerseLevel(1,"二 · 风骤","枝影摇动，风从帘缝间穿过。","羽是风声：第二处连绵，第六处也连绵。四颗短羽可以合成两颗长羽。","两对羽·短分别合并，得到两颗羽·长，放第 2、6 位。","风越过窗棂，枝头的花瓣轻轻落下。",0,-5,0,0,0,-5,0,0),
  new VerseLevel(1,"三 · 卷帘","天亮了。卷起帘子，听一遍昨夜的风雨。","雨角落在第一、五处；风羽在第三处延续。雨与风之间，要留下空隙。","角·短放第 1、5 位；羽·长放第 3 位。其余留空。","花少了一些，叶色却更浓了。眼前的海棠，并不与昨日相同。",3,0,-5,0,3,0,0,0),
- new VerseLevel(2,"一 · 月上西楼","月光照在水面。一声从楼前传向远处。","第一处商发问，第五处商回应。相同的声音，要留在不同的位置。","两颗商·短分别放第 1、5 位，不需要合成。","隔着几拍水声，另一处回答了你。",2,0,0,0,2,0,0,0),
- new VerseLevel(2,"二 · 锦书未至","书笺尚未展开。水流带着长长的余音。","第二处宫延续，第六处羽轻答。留白让声音能够传远。","宫·长放第 2 位；羽·短放第 6 位。", "月色渐满，水面仍向远处延伸。",0,-1,0,0,0,5,0,0),
- new VerseLevel(2,"三 · 两处闲愁","两岸各留下一句。把它们放回同一段往返里。","宫在第一、五处延续；商在第三、七处轻答。两岸都需要自己的声音。","第 1、5 位各放宫·长，第 3、7 位各放商·短，其余留空。","两处声音在同一圈水纹里相遇。留给你的空白，也可以写下一句。",-1,0,2,0,-1,0,2,0)
+ new VerseLevel(2,"一 · 月上西楼","月光照在水面。一声从楼前传向远处。","第一处商发问，第五处商回应。相同的声音，要留在不同的位置。","两颗商·短分别放第 1、5 位，不需要合成。","隔着几拍水声，另一处回答了你。",2,0,3,0,3,0,2,0),
+ new VerseLevel(2,"二 · 锦书未至","书笺尚未展开。水流带着长长的余音。","第二处宫延续，第六处羽轻答。留白让声音能够传远。","宫·长放第 2 位；羽·短放第 6 位。", "月色渐满，水面仍向远处延伸。",0,-1,0,5,0,0,5,0),
+ new VerseLevel(2,"三 · 两处闲愁","两岸各留下一句。把它们放回同一段往返里。","宫在第一、五处延续；商在第三、七处轻答。两岸都需要自己的声音。","第 1、5 位各放宫·长，第 3、7 位各放商·短，其余留空。","两处声音在同一圈水纹里相遇。留给你的空白，也可以写下一句。",-1,0,2,0,-2,0,3,0)
  };
 }
-[Serializable] public class SaveData { public int version=1,level,unlocked; public bool finished; public Stone[] cells; public Stone[] composition; public float volume=.65f; }
+[Serializable] public class SaveData { public int version=1,rulesRevision=3,level,unlocked; public bool finished; public Stone[] cells; public Stone[] composition; public float volume=.65f; }
 public sealed class Board {
  public Stone[] cells=new Stone[16]; readonly Stack<Stone[]> history=new Stack<Stone[]>();
  public void Load(VerseLevel level){Array.Clear(cells,0,16);history.Clear();int k=8;foreach(var t in level.target)for(int j=0;j<t.Mass;j++)cells[k++]=new Stone(t.tone);}
@@ -37,7 +37,7 @@ public sealed class Board {
  public bool Move(int from,int to){if(from<0||from>=16||to<0||to>=16||from==to||cells[from].Empty)return false;var a=cells[from];var b=cells[to];if(!b.Empty&&(a.tone!=b.tone||a.rank!=b.rank||a.rank>=2))return false;history.Push((Stone[])cells.Clone());cells[to]=b.Empty?a:new Stone(a.tone,a.rank+1);cells[from]=default(Stone);return true;}
  public bool Split(int i){if(i<0||i>=16||cells[i].rank!=2)return false;int spare=Array.FindIndex(cells,8,8,s=>s.Empty);if(spare<0)return false;history.Push((Stone[])cells.Clone());cells[i]=new Stone(cells[i].tone);cells[spare]=cells[i];return true;}
  public bool Undo(){if(history.Count==0)return false;cells=history.Pop();return true;}
- public bool Matches(VerseLevel l){for(int i=0;i<8;i++)if(cells[i].rank!=l.target[i].rank||(!cells[i].Empty&&cells[i].tone!=l.target[i].tone))return false;return true;}
+ public bool Matches(VerseLevel l){string reason;return VerseRules.Check(cells,Array.IndexOf(Content.Levels,l),out reason);}
  public int Mass {get{return cells.Sum(s=>s.Mass);}}
 }
 }
