@@ -1,0 +1,88 @@
+{
+  "version": "0.15.0",
+  "checkedAt": "2026-11-02T22:09:08.403317+08:00",
+  "build": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 0,
+    "size": 193647038
+  },
+  "rules": {
+    "assertions": 67,
+    "solvableLevels": 9,
+    "passed": true
+  },
+  "sceneRules": {
+    "passed": true,
+    "assertions": 87,
+    "twoRoutes": true,
+    "prefixReplay": true
+  },
+  "gardenRules": {
+    "passed": true,
+    "assertions": 15,
+    "validLetterLayouts": 30,
+    "validFlowerLayouts": 75,
+    "returnScenes": 2
+  },
+  "player": {
+    "passedLevels": 9,
+    "saveRoundTrips": 9,
+    "splitUndo": true,
+    "completed": true
+  },
+  "guidance": {
+    "passed": true,
+    "isolatedPractice": true,
+    "rainAndRest": true,
+    "splitWind": true,
+    "dismissAndReview": true,
+    "cancelSafe": true,
+    "failureReplay": true,
+    "savedProgress": true
+  },
+  "journey": {
+    "passed": true,
+    "outcomeGoals": true,
+    "observationGate": true,
+    "twoOutcomes": true,
+    "guessAndCompare": true,
+    "relics": true,
+    "returnScenes": 2,
+    "isolatedReturns": true,
+    "cadence": true,
+    "waterAcoustics": true,
+    "replyKeepsake": true,
+    "save": true
+  },
+  "cadences": [
+    {
+      "clip": "coda0",
+      "seconds": 2.2,
+      "peak": 0.7200000882148743,
+      "rms": 0.10050958395004272
+    },
+    {
+      "clip": "coda1",
+      "seconds": 2.2,
+      "peak": 0.7200000882148743,
+      "rms": 0.11132919788360596
+    },
+    {
+      "clip": "coda2",
+      "seconds": 2.2,
+      "peak": 0.7200000286102295,
+      "rms": 0.10169046372175217
+    },
+    {
+      "clip": "coda3",
+      "seconds": 2.2,
+      "peak": 0.7200000882148743,
+      "rms": 0.10921341180801392
+    }
+  ],
+  "method": "Actual Windows Player UI operations, deterministic rule checks and screenshot inspection",
+  "humanPlaytest": false,
+  "scope": "Second chapter outcome-based goals and observation gate; two independent return scenes; object evidence and keepsake reply; first and third chapter authored rhythm rules retained.",
+  "arrangementCountsMeaning": "Valid material arrangements, not distinct levels or story endings."
+}

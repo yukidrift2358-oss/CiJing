@@ -1,0 +1,107 @@
+[
+  {
+    "version": "v0.1",
+    "archive": "词境_v0.1_Unity工程.zip",
+    "sha256": "779b2996f0bf339ee2e0672564771b73f10ba8bf3b9cb0203b332b65b73a181c",
+    "commit": "a2116b5a6b5eb00625eeab5dba07b07711b0e602",
+    "files": 75
+  },
+  {
+    "version": "v0.2",
+    "archive": "词境_v0.2_Unity工程.zip",
+    "sha256": "ff6fc8e9b97648888d3115e01b6b920e0a4a6e5322c8437a878f2a9a6c2ef7c1",
+    "commit": "c4923b97de72d0495fc189a964eda400591b5272",
+    "files": 79
+  },
+  {
+    "version": "v0.3",
+    "archive": "词境_v0.3_Unity工程.zip",
+    "sha256": "22c304af56bece5ca4adfc580718cd401c6061a5c0687910e2fbd607acde734c",
+    "commit": "7c95bae9c6629e2187b015f4e14f442a25f4ad6b",
+    "files": 90
+  },
+  {
+    "version": "v0.4",
+    "archive": "词境_v0.4_Unity工程.zip",
+    "sha256": "cb6f9531495f5867ed022544047d76173892c02bf825ed965f01aba6836beafd",
+    "commit": "7bff8ff1e645d44d65d3fb76e3e05c29ed9a967d",
+    "files": 103
+  },
+  {
+    "version": "v0.5",
+    "archive": "词境_v0.5_Unity工程.zip",
+    "sha256": "c5232fd0065d389536a51aaace4cf05fca011262fd5b8723c8460e43abae2e24",
+    "commit": "70ca1ab5ef4e0c83bc17af23f9555ad83ff527d1",
+    "files": 145
+  },
+  {
+    "version": "v0.6",
+    "archive": "词境_v0.6_Unity工程.zip",
+    "sha256": "27af39bc58f7977bab62315d606314cc9d11bec86e918592af4394821188b63e",
+    "commit": "ee8541bee9a0e4617cf5ffc4d5b5a70a47f679c6",
+    "files": 168
+  },
+  {
+    "version": "v0.7",
+    "archive": "词境_v0.7_Unity工程.zip",
+    "sha256": "93c486747a5abfa805ef4d466b1c2a6f5dda56c22888c7528aadb1839a041830",
+    "commit": "0dadbccf8a82d0e83b06d7154c390753b68db024",
+    "files": 192
+  },
+  {
+    "version": "v0.8",
+    "archive": "词境_v0.8_Unity工程.zip",
+    "sha256": "f795b7b02f91a97ad397599119495bb1a3130295b900b8b32f2988144efa27b2",
+    "commit": "94068e7f9c0b330f1283378e5d726355a8aa5626",
+    "files": 197
+  },
+  {
+    "version": "v0.9",
+    "archive": "词境_v0.9_Unity工程.zip",
+    "sha256": "dff2c939bd6d08cce2e13d928fb9ed1c4754101e5436796aa75a36e02ba19e25",
+    "commit": "7300972d787ccc68c659f1c0542dd9a8da74dbac",
+    "files": 198
+  },
+  {
+    "version": "v0.10",
+    "archive": "词境_v0.10_Unity工程.zip",
+    "sha256": "e0762f3f22b048bb0344f831725e6ff3a9c8d844796848f8af06c1c01ec5f134",
+    "commit": "63a6fa3cf19c9f739c5a1ab23598521d391adf60",
+    "files": 201
+  },
+  {
+    "version": "v0.11",
+    "archive": "词境_v0.11_Unity工程.zip",
+    "sha256": "36f311a15c1c24c909f66706aa786706a504581879f99c10b14f23e05287dbad",
+    "commit": "6a255daf59f9bf59aae50cab21a496463bef0c41",
+    "files": 202
+  },
+  {
+    "version": "v0.12",
+    "archive": "词境_v0.12_Unity工程.zip",
+    "sha256": "f9cd47f709fbb0a2b20afb731f3ef8356217a21ccace360b59f22ad928d9d91c",
+    "commit": "d1758a7092d157875cf9c131e49558197e483ed1",
+    "files": 206
+  },
+  {
+    "version": "v0.13",
+    "archive": "词境_v0.13_Unity工程.zip",
+    "sha256": "c68949fb9da7b65dc670d668f40439f3b20ee39650e11f8a15ade671f33c36d5",
+    "commit": "2a8cd2c4a535ba584782853d11034213dd99343d",
+    "files": 244
+  },
+  {
+    "version": "v0.14",
+    "archive": "词境_v0.14_Unity工程.zip",
+    "sha256": "f95a28cefbc2f0608341e6fe5236356f863912dcf85daa27319e269c6b8021bd",
+    "commit": "e8423069d7f65190a0ab6e9564fb9cc6ca99e1b6",
+    "files": 248
+  },
+  {
+    "version": "v0.15",
+    "archive": "词境_v0.15_Unity工程.zip",
+    "sha256": "edf19dc9230ff65d43c889c34b35dcf5c497372d59fed8ee9845f6c31da753cb",
+    "commit": "cfb443c3cc22f23fb53f0c1aebb7ae17b7c90f70",
+    "files": 270
+  }
+]
