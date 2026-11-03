@@ -1,0 +1,45 @@
+{
+  "repository": "https://github.com/yukidrift2358-oss/CiJing",
+  "public": true,
+  "release": "https://github.com/yukidrift2358-oss/CiJing/releases/tag/v0.15",
+  "tags": 15,
+  "assets": [
+    {
+      "name": "CiJing-v0.15-Windows.zip",
+      "bytes": 95141114,
+      "sha256": "501b202ff545e72584e3f03104e3b65977c7d995c41235bbfdeeb7a687fbf638",
+      "serverDigestChecked": true
+    },
+    {
+      "name": "CiJing-v0.15-Unity.zip",
+      "bytes": 110439425,
+      "sha256": "edf19dc9230ff65d43c889c34b35dcf5c497372d59fed8ee9845f6c31da753cb",
+      "serverDigestChecked": true
+    },
+    {
+      "name": "CiJing-Design-v3.mp4",
+      "bytes": 20269528,
+      "sha256": "d9972e6687641883ba23227e70cf3aa3687ccdcc67b9aa46cd1d6e1c4a3855f0",
+      "serverDigestChecked": true
+    },
+    {
+      "name": "CiJing-Raw-Recording-v3.zip",
+      "bytes": 122818148,
+      "sha256": "3bcf51521f10303ce0ee8803f810f41681fb45f3b6f9c1a6a981a99d9d23dfdc",
+      "serverDigestChecked": true
+    },
+    {
+      "name": "CiJing-Video-Editable-v3.zip",
+      "bytes": 21356377,
+      "sha256": "252e8746f8227a40c7c9cecbe1e8b4464df5479cae1c82b1140e5d40169d1b22",
+      "serverDigestChecked": true
+    },
+    {
+      "name": "CiJing-Walkthrough-v3.mp4",
+      "bytes": 35770082,
+      "sha256": "b0fa931bc815425cbcfed73468c753fbf99cc8025f3952d38830ac7831ae042b",
+      "serverDigestChecked": true
+    }
+  ],
+  "anonymousReleaseVerified": true
+}
