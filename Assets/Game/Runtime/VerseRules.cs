@@ -14,7 +14,7 @@ public static class VerseRules {
  public static string Guide(int n){return string.Join("\n",Evidence(n));}
  static int[] At(Stone[] b,int tone,int rank){return Enumerable.Range(0,8).Where(i=>b[i].tone==tone&&b[i].rank==rank).ToArray();}
  static int Count(Stone[] b){return b.Take(8).Count(x=>!x.Empty);}
- public static bool Check(Stone[] b,int n,out string reason){reason="";if(n<3){var l=Content.Levels[n];for(int i=0;i<8;i++)if(b[i].rank!=l.target[i].rank||(!b[i].Empty&&b[i].tone!=l.target[i].tone)){reason="再比较起音的位置、长短与留白。";return false;}return true;}
+ public static bool Check(Stone[] b,int n,out string reason){reason="";if(b.Take(8).Any(x=>x.echo>0)){reason="此景须用单音。合声可拆，藏曲另有回响。";return false;}if(n<3){var l=Content.Levels[n];for(int i=0;i<8;i++)if(b[i].rank!=l.target[i].rank||(!b[i].Empty&&b[i].tone!=l.target[i].tone)){reason="再比较起音的位置、长短与留白。";return false;}return true;}
  bool ok=false;switch(n){
  case 3:var rain=At(b,2,1);if(rain.Length!=3||Count(b)!=3){reason="檐下需要三滴短角；其他声音先留在行囊。";break;}var gaps=new int[3];for(int i=0;i<3;i++)gaps[i]=(rain[(i+1)%3]-rain[i]+8)%8-1;Array.Sort(gaps);ok=gaps.SequenceEqual(new[]{1,2,2});reason="三次停顿应为两拍、两拍、一拍，记得检查首尾。";break;
  case 4:var wind=At(b,4,2);ok=wind.Length==2&&Count(b)==2&&wind[1]-wind[0]==4;reason="两声都应是长羽，起音相隔半圈。";break;
