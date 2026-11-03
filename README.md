@@ -17,7 +17,7 @@ https://github.com/yukidrift2358-oss/CiJing/releases/download/v0.15/CiJing-Desig
 主线全流程与附加内容（约 9 分半）：
 https://github.com/yukidrift2358-oss/CiJing/releases/download/v0.15/CiJing-Walkthrough-v3.mp4
 
-讲解稿、字幕、章节和制作方法见 [展示材料](Docs/Showcase)。附加回访与引导画面使用有标记的运行截图，详细方法见制作记录。
+讲解稿、字幕、章节与图示见 [展示材料](Docs/Showcase)。
 
 ## 合成为什么需要取舍
 
@@ -38,13 +38,6 @@ https://github.com/yukidrift2358-oss/CiJing/releases/download/v0.15/CiJing-Walkt
 
 ## 版本与工程打开方式
 
-[15 份工程快照与版本比较](Docs/Showcase/迭代记录.md)。提交是当前导入，未倒签开发时间。各版本保留 Unity .meta 文件。
+[版本与迭代记录](Docs/Showcase/迭代记录.md)
 
 用 Unity 2022.3.62f3c1 打开仓库目录，入口场景为 `Assets/Scenes/CiJing.unity`。正常运行所需素材已包含。批处理构建入口为 `CiJing.EditorTools.BuildGame.Run`，会重新创建入口场景并输出至工程同级 Deliverables；运行构建前请保存自己的场景修改。原生录制所需 FFmpeg 和音频开发脚本依赖没有打包进仓库。
-
-## 素材与制作说明
-
-美术包含 AI 生成水墨素材；配乐使用 VSCO CC0 竖琴、长笛录音重新编排，风雨纹理由项目制作。来源与许可见 [音频致谢](Docs/Audio-Credits-v05.md)、[VSCO 许可](Docs/VSCO-LICENSE.txt) 及工程内字体 OFL 文件。原词、改编叙事与第三方素材应按各自来源区分。
-
-此仓库用于展示和查看工程，没有为整个项目额外授予统一开源许可；第三方素材仍遵守各自许可。
-
