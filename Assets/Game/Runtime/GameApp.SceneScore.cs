@@ -20,13 +20,13 @@ public sealed partial class GameApp {
   Button(page,"续 听",1245,500,130,42,ResumeScore);
   Button(page,"画 记",1390,500,130,42,ReadSceneMemory);
   for(int i=0;i<8;i++){int n=i;var hit=Panel(page,95+i*119,490,42,42,Color.clear);hit.raycastTarget=true;var b=hit.gameObject.AddComponent<Button>();b.transition=Selectable.Transition.None;b.onClick.AddListener(()=>SeekScore(n));}
-  if(freeMode&&save.composition!=null){moment=SceneScore.At(board.cells,Content.Levels[level].chapter,7);sceneCaption.text=moment.caption;}scoreView.Set(moment,true);music.Environment(moment);
+  AddGuideReflection(window,view,680,141);if(freeMode&&save.composition!=null){moment=SceneScore.At(board.cells,Content.Levels[level].chapter,7);sceneCaption.text=moment.caption;}scoreView.Set(moment,true);music.Environment(moment);
  }
- void ScoreBeat(int index){inspected=index;moment=SceneScore.At(board.cells,Content.Levels[level].chapter,index);if(scoreView)scoreView.Set(moment);if(sceneCaption)sceneCaption.text=moment.caption;if(seekCaption)seekCaption.text="第 "+(index+1)+" 拍 · "+(board.cells[index].Empty?"留白":board.cells[index].ToString());music.Environment(moment);
-  if(!partialAudition&&SceneScore.Outcome(moment)!=0){int before=save.sceneDiscoveries[level];save.sceneDiscoveries[level]|=SceneScore.Outcome(moment);if(before!=save.sceneDiscoveries[level]){Persist();if(clueText&&!freeMode)clueText.text=QuestSummary();}}
+ void ScoreBeat(int index){inspected=index;moment=SceneScore.At(board.cells,Content.Levels[level].chapter,index);if(scoreView)scoreView.Set(moment);if(sceneCaption)sceneCaption.text=moment.caption;if(seekCaption)seekCaption.text="第 "+(index+1)+" 拍 · "+(board.cells[index].Empty?"留白":board.cells[index].ToString());music.Environment(moment);GuideScoreBeat(index);
+  if(!partialAudition&&SceneScore.Outcome(moment)!=0){int before=save.sceneDiscoveries[level];save.sceneDiscoveries[level]|=SceneScore.Outcome(moment);if(before!=save.sceneDiscoveries[level]){Persist();if(clueText&&!freeMode)clueText.text=QuestSummary();}}RefreshGuidance();
  }
- void SeekScore(int index){if(modal||completing)return;playing=false;Silence();partialAudition=true;beat=Mathf.Clamp(index,0,7);ScoreBeat(beat);UpdateSlots();playLabel.text="听 曲";SetFeedback("回看第 "+(beat+1)+" 拍。续听可从此处接起；听曲可完整重奏。");}
- void ResumeScore(){if(modal||completing)return;if(inspected<0){Play();return;}Silence();partialAudition=true;playing=true;beat=inspected-1;elapsed=.7f;playLabel.text="止 音";SetFeedback("从第 "+(inspected+1)+" 拍续听；完整奏毕才收入本景。");}
+ void SeekScore(int index){if(modal||completing)return;playing=false;Silence();partialAudition=true;beat=Mathf.Clamp(index,0,7);ScoreBeat(beat);UpdateSlots();playLabel.text="听 曲";SetFeedback("回看第 "+(beat+1)+" 拍。续听可从此处接起；听曲可完整重奏。");GuideSeek();}
+ void ResumeScore(){if(modal||completing)return;if(inspected<0){Play();return;}Silence();if(guideSeekSeen)GuideCompleted(GuideTopic.Replay,"已从选定拍接着听。试好之后，用听曲完整演奏。");partialAudition=true;playing=true;beat=inspected-1;elapsed=.7f;playLabel.text="止 音";SetFeedback("从第 "+(inspected+1)+" 拍续听；完整奏毕才收入本景。");}
  void RecordSceneOutcome(){int result=SceneScore.Outcome(moment);save.sceneOutcomes[level]=result;save.sceneDiscoveries[level]|=result;if(freeMode){save.compositionScene=result;save.compositionChapter=Content.Levels[level].chapter;save.composition=(Stone[])board.cells.Clone();}Persist();}
  void ReadSceneMemory(){if(playing){playing=false;Silence();playLabel.text="听 曲";}int known=save.sceneDiscoveries[level];string body="";
   if(known==0)body="画中尚无新迹。\n\n角声落雨，羽声起风；宫声行舟。\n长声可续风雨，短声只留一痕。\n声歇之后，留心水影与花枝。";

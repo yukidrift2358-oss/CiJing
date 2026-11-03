@@ -8,6 +8,8 @@ public sealed class MusicBed:MonoBehaviour {
  public void Environment(SceneMoment state){environment=state;}
  void Update(){float dt=FilmClock.Delta;source.volume=Mathf.MoveTowards(source.volume,Volume*(Duck?.33f:.82f),dt*.7f);ornament.volume=Mathf.MoveTowards(ornament.volume,Volume*(Duck?.08f:.26f)*(environment.reflection?1.3f:1),dt*.5f);rain.volume=Mathf.MoveTowards(rain.volume,Volume*Mathf.Clamp01(environment.rain)*.42f,dt*.9f);wind.volume=Mathf.MoveTowards(wind.volume,Volume*Mathf.Clamp01(environment.wind)*.32f,dt*.9f);}
  public void Respond(int tone,int rank){if(!flute||Time.unscaledTime-responseTime<1.6f)return;responseTime=Time.unscaledTime;reply.clip=flute;reply.pitch=Mathf.Pow(2,new[]{0,2,4,7,9}[tone]/12f);reply.volume=Volume*(rank==2?.13f:.075f);reply.panStereo=.35f;reply.Play();}
+ public void StopResponse(){if(reply)reply.Stop();responseTime=-10;}
+ public bool ResponseActive{get{return reply&&reply.isPlaying;}}
  public bool Active{get{return source&&source.isPlaying;}}
 }
 }

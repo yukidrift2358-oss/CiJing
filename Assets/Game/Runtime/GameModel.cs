@@ -29,7 +29,7 @@ public static class Content {
  new VerseLevel(2,"三 · 两处闲愁","两岸各无语，隔波一曲回。","宫在第一、五处延续；商在第三、七处轻答。两岸都需要自己的声音。","第 1、5 位各放宫·长，第 3、7 位各放商·短，其余留空。","两岸各唱半句，月下终于有了完整的回声。你收起音石，俯身展开那封一直未读的信。",-1,0,2,0,-2,0,3,0)
  };
 }
-[Serializable] public class SaveData { public int compositionChapter=-1;public int secrets,compositionScene;public int[] sceneOutcomes=new int[9],sceneDiscoveries=new int[9];public int version=1,rulesRevision=3,level,unlocked; public bool finished; public Stone[] cells; public Stone[] composition; public int[] evidence=new int[9];public float musicVolume=.35f;public float volume=.65f; }
+[Serializable] public class SaveData { public int guideDone,guideDismissed;public int compositionChapter=-1;public int secrets,compositionScene;public int[] sceneOutcomes=new int[9],sceneDiscoveries=new int[9];public int version=1,rulesRevision=3,level,unlocked; public bool finished; public Stone[] cells; public Stone[] composition; public int[] evidence=new int[9];public float musicVolume=.35f;public float volume=.65f; }
 public sealed class Board {
  public Stone[] cells=new Stone[16]; readonly Stack<Stone[]> history=new Stack<Stone[]>();
  public void Load(VerseLevel level){Array.Clear(cells,0,16);history.Clear();int k=8;foreach(var t in level.target)for(int j=0;j<t.Mass;j++)cells[k++]=new Stone(t.tone);}

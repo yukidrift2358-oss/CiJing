@@ -27,3 +27,10 @@ SaveData 新增 sceneOutcomes、sceneDiscoveries、compositionScene、compositio
 MusicBed 使用三组同步双层配乐、风雨环境层、长笛回应。真实录音与本版编排说明在 Docs/v013-音景联动与制作记录.md。正常构建无需运行音频脚本。
 
 BuildGame 默认输出 CiJing-v0.13-Windows。保留 --film-build 开发分支；此前成片属于 v0.12，不能作为 v0.13 新功能的运行证据。
+
+
+## v0.14 引导与小卷
+
+GameApp.Guidance.cs：按操作显示的主题引导、GuideFocus 非阻挡墨圈、独立 Board 小卷练习、关闭取消及新增自动检查。guideDone 和 guideDismissed 分开保存，旧存档默认未学习，不重置主线。
+
+--guide-test 可单独检查练习与提示；--self-test 包含九关及新增引导检查。v0.14 默认构建输出 CiJing-v0.14-Windows，旧发布包保留。
