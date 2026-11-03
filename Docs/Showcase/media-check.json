@@ -1,0 +1,30 @@
+{
+  "策划讲解版": {
+    "file": "词境_策划讲解版_v3.mp4",
+    "seconds": 329.99,
+    "decodedFrames": 9899,
+    "fps": 30,
+    "decodeErrors": 0,
+    "captionCount": 66,
+    "captionTextMatchesScript": true,
+    "lastCaptionSeconds": 327.650708,
+    "peakDb": -2.3,
+    "meanDb": -24.8,
+    "bytes": 20269528,
+    "sha256": "d9972e6687641883ba23227e70cf3aa3687ccdcc67b9aa46cd1d6e1c4a3855f0"
+  },
+  "全流程演示": {
+    "file": "词境_全流程演示_v3.mp4",
+    "seconds": 571.07,
+    "decodedFrames": 17132,
+    "fps": 30,
+    "decodeErrors": 0,
+    "captionCount": 42,
+    "captionTextMatchesScript": true,
+    "lastCaptionSeconds": 568.720708,
+    "peakDb": -2.4,
+    "meanDb": -25.8,
+    "bytes": 35770082,
+    "sha256": "b0fa931bc815425cbcfed73468c753fbf99cc8025f3952d38830ac7831ae042b"
+  }
+}

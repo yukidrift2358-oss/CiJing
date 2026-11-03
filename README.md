@@ -6,7 +6,13 @@
 
 试玩、源码压缩包和讲解视频统一入口：[https://github.com/yukidrift2358-oss/CiJing/releases/tag/v0.15](https://github.com/yukidrift2358-oss/CiJing/releases/tag/v0.15)
 
-完整演示与策划讲解分别提供，视频覆盖的规则以 v0.15 为准。讲解稿、字幕、章节和制作方法见 [展示材料](Docs/Showcase)。
+策划讲解（约 5 分半）：
+https://github.com/yukidrift2358-oss/CiJing/releases/download/v0.15/CiJing-Design-v3.mp4
+
+主线全流程与附加内容（约 9 分半）：
+https://github.com/yukidrift2358-oss/CiJing/releases/download/v0.15/CiJing-Walkthrough-v3.mp4
+
+讲解稿、字幕、章节和制作方法见 [展示材料](Docs/Showcase)。附加回访与引导画面使用有标记的运行截图，详细方法见制作记录。
 
 ## 合成为什么需要取舍
 
