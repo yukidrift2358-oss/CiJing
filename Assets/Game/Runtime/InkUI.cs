@@ -42,7 +42,7 @@ public sealed class InkButtonFeedback:MonoBehaviour,IPointerEnterHandler,IPointe
  public void OnDeselect(BaseEventData e){focus=false;}
  void Update(){
   bool off=!button.IsInteractable();float target=off?0:(hover||focus?1:0),targetPress=off?0:(pressed?1:0);
-  float next=Mathf.MoveTowards(value,target,Time.unscaledDeltaTime*9),nextPress=Mathf.MoveTowards(press,targetPress,Time.unscaledDeltaTime*14);
+  float next=Mathf.MoveTowards(value,target,FilmClock.Delta*9),nextPress=Mathf.MoveTowards(press,targetPress,FilmClock.Delta*14);
   if(next==value&&nextPress==press&&off==disabled)return;
   value=next;press=nextPress;disabled=off;brush.Focus=value;brush.Press=press;brush.Disabled=off;brush.Refresh();
   title.color=off?new Color(.47f,.47f,.41f):(primary?Color.Lerp(new Color(.58f,.22f,.15f),new Color(.36f,.12f,.08f),Mathf.Max(value*.45f,press)):Color.Lerp(new Color(.16f,.25f,.24f),new Color(.55f,.20f,.14f),value));

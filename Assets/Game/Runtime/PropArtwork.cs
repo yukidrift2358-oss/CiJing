@@ -15,7 +15,7 @@ public sealed class PropArtwork:MonoBehaviour,IPointerEnterHandler,IPointerExitH
  public void OnPointerEnter(PointerEventData e){hover=true;}
  public void OnPointerExit(PointerEventData e){hover=false;}
  void Update(){
-  annotation.alpha=Mathf.MoveTowards(annotation.alpha,hover?1:0,Time.unscaledDeltaTime*7);
+  annotation.alpha=Mathf.MoveTowards(annotation.alpha,hover?1:0,FilmClock.Delta*7);
   annotation.blocksRaycasts=hover;annotation.interactable=hover;
   if(ink)ink.SetFloat("_Focus",annotation.alpha);
   if(badge)badge.text=Seen?"已收此笺 · 可重读":"点读 · 词痕在此";

@@ -1,11 +1,13 @@
 using UnityEngine;
 namespace CiJing {
 public sealed class MusicBed:MonoBehaviour {
- AudioSource source,reply;float responseTime=-10;AudioClip flute;public float Volume=.35f;public bool Duck;int chapter=-1;
- void Awake(){source=gameObject.AddComponent<AudioSource>();source.playOnAwake=false;source.loop=true;reply=gameObject.AddComponent<AudioSource>();reply.playOnAwake=false;flute=Resources.Load<AudioClip>("Audio/flute");}
- public void Chapter(int value){value=Mathf.Clamp(value,0,2);if(chapter==value&&source.clip)return;chapter=value;source.clip=Resources.Load<AudioClip>("Audio/music"+value);if(!source.clip)throw new System.Exception("Music sample missing");source.volume=0;source.Play();}
- void Update(){source.volume=Mathf.MoveTowards(source.volume,Mathf.Clamp01(Volume*1.35f)*(Duck?.48f:1),Time.unscaledDeltaTime*.5f);}
- public void Respond(int tone,int rank){if(!flute||Time.unscaledTime-responseTime<1.25f)return;responseTime=Time.unscaledTime;reply.clip=flute;reply.pitch=Mathf.Pow(2,new[]{0,2,4,7,9}[tone]/12f);reply.volume=Volume*(rank==2?.22f:.12f);reply.Play();}
+ AudioSource source,reply,ornament,rain,wind;float responseTime=-10;AudioClip flute;AudioClip[] beds=new AudioClip[3],details=new AudioClip[3];public float Volume=.35f;public bool Duck;int chapter=-1;SceneMoment environment;
+ AudioSource Loop(string name){var a=gameObject.AddComponent<AudioSource>();a.playOnAwake=false;a.loop=true;a.volume=0;a.clip=Resources.Load<AudioClip>("Audio/"+name);return a;}
+ void Awake(){source=Loop("score0");ornament=Loop("ornament0");rain=Loop("scene-rain");wind=Loop("scene-wind");reply=gameObject.AddComponent<AudioSource>();reply.playOnAwake=false;flute=Resources.Load<AudioClip>("Audio/flute");for(int i=0;i<3;i++){beds[i]=Resources.Load<AudioClip>("Audio/score"+i);details[i]=Resources.Load<AudioClip>("Audio/ornament"+i);}rain.Play();wind.Play();}
+ public void Chapter(int value){value=Mathf.Clamp(value,0,2);if(chapter==value&&source.isPlaying)return;chapter=value;if(!beds[value]||!details[value])throw new System.Exception("Adaptive score missing");source.clip=beds[value];ornament.clip=details[value];source.volume=ornament.volume=0;double at=AudioSettings.dspTime+.08;source.PlayScheduled(at);ornament.PlayScheduled(at);}
+ public void Environment(SceneMoment state){environment=state;}
+ void Update(){float dt=FilmClock.Delta;source.volume=Mathf.MoveTowards(source.volume,Volume*(Duck?.33f:.82f),dt*.7f);ornament.volume=Mathf.MoveTowards(ornament.volume,Volume*(Duck?.08f:.26f)*(environment.reflection?1.3f:1),dt*.5f);rain.volume=Mathf.MoveTowards(rain.volume,Volume*Mathf.Clamp01(environment.rain)*.42f,dt*.9f);wind.volume=Mathf.MoveTowards(wind.volume,Volume*Mathf.Clamp01(environment.wind)*.32f,dt*.9f);}
+ public void Respond(int tone,int rank){if(!flute||Time.unscaledTime-responseTime<1.6f)return;responseTime=Time.unscaledTime;reply.clip=flute;reply.pitch=Mathf.Pow(2,new[]{0,2,4,7,9}[tone]/12f);reply.volume=Volume*(rank==2?.13f:.075f);reply.panStereo=.35f;reply.Play();}
  public bool Active{get{return source&&source.isPlaying;}}
 }
 }

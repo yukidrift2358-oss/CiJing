@@ -6,7 +6,7 @@ public sealed class PortraitMotion:MonoBehaviour {
  public bool Typing{get{return count<line.Length;}}
  public void SetLine(string value){line=value;count=0;clock=.22f;dialogue.text="";}
  public void FinishLine(){count=line.Length;dialogue.text=line;clock=0;}
- void Update(){if(!Typing)return;clock-=Time.unscaledDeltaTime;if(clock>0)return;char c=line[count++];dialogue.text=line.Substring(0,count);clock="。！？；".IndexOf(c)>=0?.42f:"，、：".IndexOf(c)>=0?.19f:.045f;}
+ void Update(){if(!Typing)return;clock-=FilmClock.Delta;if(clock>0)return;char c=line[count++];dialogue.text=line.Substring(0,count);clock="。！？；".IndexOf(c)>=0?.42f:"，、：".IndexOf(c)>=0?.19f:.045f;}
 }
 public static class StoryText {
  public static string Speaker(int page){return page==1?"画 中 人":"卷 中 记";}
