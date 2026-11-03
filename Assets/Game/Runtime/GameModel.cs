@@ -29,7 +29,7 @@ public static class Content {
  new VerseLevel(2,"三 · 两处闲愁","两岸各留下一句。把它们放回同一段往返里。","宫在第一、五处延续；商在第三、七处轻答。两岸都需要自己的声音。","第 1、5 位各放宫·长，第 3、7 位各放商·短，其余留空。","两处声音在同一圈水纹里相遇。留给你的空白，也可以写下一句。",-1,0,2,0,-2,0,3,0)
  };
 }
-[Serializable] public class SaveData { public int version=1,rulesRevision=3,level,unlocked; public bool finished; public Stone[] cells; public Stone[] composition; public float volume=.65f; }
+[Serializable] public class SaveData { public int version=1,rulesRevision=3,level,unlocked; public bool finished; public Stone[] cells; public Stone[] composition; public int[] evidence=new int[9];public float musicVolume=.35f;public float volume=.65f; }
 public sealed class Board {
  public Stone[] cells=new Stone[16]; readonly Stack<Stone[]> history=new Stack<Stone[]>();
  public void Load(VerseLevel level){Array.Clear(cells,0,16);history.Clear();int k=8;foreach(var t in level.target)for(int j=0;j<t.Mass;j++)cells[k++]=new Stone(t.tone);}
