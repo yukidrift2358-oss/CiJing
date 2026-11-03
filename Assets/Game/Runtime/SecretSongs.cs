@@ -12,7 +12,7 @@ public static class SecretSongs {
  public static int Resolve(Stone[] cells){for(int n=0;n<3;n++){var s=cells[Starts[n]];var reply=cells[Replies[n]];if(s.rank==2&&s.echo>0&&Recipe(s.tone,s.echo-1)==n&&reply.rank==1&&reply.echo==0&&reply.tone==Pairs[n][0]&&Enumerable.Range(0,8).All(i=>i==Starts[n]||i==Replies[n]||cells[i].Empty))return n;}return -1;}
 }
 public sealed partial class GameApp {
- void ArmWeave(){if(playing||modal||completing)return;if(selected<0||board.cells[selected].rank!=1){SetFeedback("先择一枚短音，再点“合声”，继而择另一枚。宫角、商羽、角徵可以相和。");return;}weaving=true;SetFeedback("待一声相和：择另一枚短音。宫与角、商与羽、角与徵可合；合后可拆。");}
+ void ArmWeave(){if(playing||modal||completing)return;if(selected<0||board.cells[selected].rank!=1){SetFeedback("择一枚短音，点“合声”以待另一音。宫角、商羽、角徵可相和。");return;}weaving=true;SetFeedback("已候和声，请择另一短音。宫角、商羽、角徵可合，亦可拆。");}
  void ShowSecretSongs(){string text="异音相和，别有余声。（以下题句为本作自撰）\n宫角 · 疏雨　商羽 · 雁回　角徵 · 落花\n\n藏曲：入“自在谱曲”，依下列拍位布合声与低音短答，其余留白。\n疏雨：一、五拍；雁回：二、七拍；落花：三、五拍。\n试听一圈，题句自现；合声可拆，错步可撤。\n";for(int i=0;i<3;i++)text+="\n"+SecretSongs.Names[i]+"："+((save.secrets&(1<<i))!=0?SecretSongs.Verses[i]:"墨痕未显");OpenModal("拾 遗 · 藏 曲",text,"收卷",CloseModal);var body=modal.GetComponentsInChildren<UnityEngine.UI.Text>().First(t=>t.text==text);body.fontSize=20;body.lineSpacing=1.05f;}
  void FinishSecretSong(){int n=SecretSongs.Resolve(board.cells);if(n<0){SetFeedback("曲罢水犹静。藏曲须依拍位合声、低音相答，其余留白。详见藏曲笺。");return;}bool fresh=(save.secrets&(1<<n))==0;save.secrets|=1<<n;Persist();SetFeedback((fresh?"新得题句 · ":"重听 · ")+SecretSongs.Names[n]+"："+SecretSongs.Verses[n]);}
  IEnumerator TestSecretSongs(string dir){save.secrets=0;for(int n=0;n<3;n++){

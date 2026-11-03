@@ -18,7 +18,7 @@ public sealed class PropArtwork:MonoBehaviour,IPointerEnterHandler,IPointerExitH
   annotation.alpha=Mathf.MoveTowards(annotation.alpha,hover?1:0,Time.unscaledDeltaTime*7);
   annotation.blocksRaycasts=hover;annotation.interactable=hover;
   if(ink)ink.SetFloat("_Focus",annotation.alpha);
-  if(badge)badge.text=Seen?"已收入词笺 · 点击重看":"点击查看 · 寻找词句";
+  if(badge)badge.text=Seen?"已收此笺 · 可重读":"点读 · 词痕在此";
  }
  void OnDisable(){hover=false;if(annotation)annotation.alpha=0;}
  void OnDestroy(){if(ink)Destroy(ink);}
