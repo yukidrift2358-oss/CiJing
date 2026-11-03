@@ -4,12 +4,12 @@ namespace CiJing {
 // Original brush geometry for environmental movement; illustration assets remain
 // separate, so a curtain lift cannot distort the painted garden underneath.
 public sealed class ScoreSceneView:MaskableGraphic {
- public SceneMoment Moment;public int Chapter;float clock;public Material GardenInk,CurtainInk;
+ public SceneMoment Moment;public int Chapter;public bool GateGarden;float clock;public Material GardenInk,CurtainInk;
  public RectTransform Curtain,Branch,Letter,Boat;public CanvasGroup LetterInk,ReflectionInk;
  SceneMoment shown;
  public void Set(SceneMoment value,bool snap=false){Moment=value;if(snap)shown=value;SetVerticesDirty();}
  void Update(){clock+=FilmClock.Delta;float k=1-Mathf.Exp(-FilmClock.Delta*4);shown.rain=Mathf.Lerp(shown.rain,Moment.rain,k);shown.wind=Mathf.Lerp(shown.wind,Moment.wind,k);shown.ripple=Mathf.Lerp(shown.ripple,Moment.ripple,k);shown.curtain=Mathf.Lerp(shown.curtain,Moment.curtain,k);shown.boat=Mathf.Lerp(shown.boat,Moment.boat,k);shown.petals=Moment.petals;shown.reflection=Moment.reflection;
-  if(GardenInk)GardenInk.SetFloat("_Loss",Mathf.Clamp01(shown.petals*.5f));
+  if(GardenInk){GardenInk.SetFloat("_Loss",Mathf.Clamp01(shown.petals*.5f));GardenInk.SetFloat("_Reveal",GateGarden?Mathf.SmoothStep(0,1,Mathf.InverseLerp(.35f,.9f,shown.curtain)):1);}
   if(ReflectionInk)ReflectionInk.alpha=Mathf.MoveTowards(ReflectionInk.alpha,Moment.reflection?.42f:0,FilmClock.Delta*.8f);
   if(Curtain){Curtain.localScale=new Vector3(1,1-shown.curtain*.76f,1);Curtain.localEulerAngles=new Vector3(0,0,Mathf.Sin(clock*1.7f)*shown.wind*1.4f);}
   if(Branch)Branch.localEulerAngles=new Vector3(0,0,Mathf.Sin(clock*2)*shown.wind*2);

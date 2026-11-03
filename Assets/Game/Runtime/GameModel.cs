@@ -23,13 +23,13 @@ public static class Content {
  new VerseLevel(0,"三 · 争渡","争渡声方急，沙禽已满汀。","宫在第一、三处分别响起；徵在第六处延续。留心：两个宫要分开。","第 1、3 位放宫·短；两颗徵合成徵·长，放第 6 位。","浅滩惊起鸥鹭，荷丛豁然开阔。灯影沿岸亮起，方才的桨痕一一接回溪亭。",1,0,1,0,0,-4,0,0),
  new VerseLevel(1,"一 · 夜雨","檐雨三更歇，空庭数滴闻。","角是雨滴的清音：第一、四、七处各有一滴，其余停息。","角·短分别放第 1、4、7 位。不要把雨滴合成长声。","几滴檐水落定，静处透出窗后的风声。你侧耳再听，才知一夜的雨并未占满庭院。",3,0,0,3,0,0,3,0),
  new VerseLevel(1,"二 · 风骤","疏枝摇夜影，风过不成眠。","羽是风声：第二处连绵，第六处也连绵。四颗短羽可以合成两颗长羽。","两对羽·短分别合并，得到两颗羽·长，放第 2、6 位。","风声越过窗棂，两片花瓣落在笺旁。余下的枝叶仍在轻摇，帘后渐有天光。",0,-5,0,0,0,-5,0,0),
- new VerseLevel(1,"三 · 卷帘","卷帘花已瘦，满径见新青。","雨角落在第一、五处；风羽在第三处延续。雨与风之间，要留下空隙。","角·短放第 1、5 位；羽·长放第 3 位。其余留空。","帘外的花已稀了，叶色却浓。你将昨日的残笺放在窗边，没有再拿它遮住今晨的海棠。",3,0,-5,0,3,0,0,0),
+ new VerseLevel(1,"三 · 卷帘","隔帘听夜雨，待晓看花枝。","雨角落在第一、五处；风羽在第三处延续。雨与风之间，要留下空隙。","角·短放第 1、5 位；羽·长放第 3 位。其余留空。","帘外的花已稀了，叶色却浓。你将昨日的残笺放在窗边，没有再拿它遮住今晨的海棠。",3,0,-5,0,3,0,0,0),
  new VerseLevel(2,"一 · 月上西楼","月白楼前水，遥声渡晚汀。","第一处商发问，第五处商回应。相同的声音，要留在不同的位置。","两颗商·短分别放第 1、5 位，不需要合成。","水声歇了片刻，对岸才传来回答。听来仍是熟悉的两声，次序却悄悄换了。",2,0,3,0,3,0,2,0),
  new VerseLevel(2,"二 · 锦书未至","锦字随流水，余音过小桥。","第二处宫延续，第六处羽轻答。留白让声音能够传远。","宫·长放第 2 位；羽·短放第 6 位。", "一声长吟出楼，隔水又落两声轻答。回信浮在月影里，离岸边近了一些。",0,-1,0,5,0,0,5,0),
  new VerseLevel(2,"三 · 两处闲愁","两岸各无语，隔波一曲回。","宫在第一、五处延续；商在第三、七处轻答。两岸都需要自己的声音。","第 1、5 位各放宫·长，第 3、7 位各放商·短，其余留空。","两岸各唱半句，月下终于有了完整的回声。你收起音石，俯身展开那封一直未读的信。",-1,0,2,0,-2,0,3,0)
  };
 }
-[Serializable] public class SaveData { public int guideDone,guideDismissed;public int compositionChapter=-1;public int secrets,compositionScene;public int[] sceneOutcomes=new int[9],sceneDiscoveries=new int[9];public int version=1,rulesRevision=3,level,unlocked; public bool finished; public Stone[] cells; public Stone[] composition; public int[] evidence=new int[9];public float musicVolume=.35f;public float volume=.65f; }
+[Serializable] public class SaveData { public int gardenGuess,gardenRead,relics,revisited;public int guideDone,guideDismissed;public int compositionChapter=-1;public int secrets,compositionScene;public int[] sceneOutcomes=new int[9],sceneDiscoveries=new int[9];public int version=1,rulesRevision=3,level,unlocked; public bool finished; public Stone[] cells; public Stone[] composition; public int[] evidence=new int[9];public float musicVolume=.35f;public float volume=.65f; }
 public sealed class Board {
  public Stone[] cells=new Stone[16]; readonly Stack<Stone[]> history=new Stack<Stone[]>();
  public void Load(VerseLevel level){Array.Clear(cells,0,16);history.Clear();int k=8;foreach(var t in level.target)for(int j=0;j<t.Mass;j++)cells[k++]=new Stone(t.tone);}

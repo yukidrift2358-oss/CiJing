@@ -34,3 +34,14 @@ BuildGame 默认输出 CiJing-v0.13-Windows。保留 --film-build 开发分支�
 GameApp.Guidance.cs：按操作显示的主题引导、GuideFocus 非阻挡墨圈、独立 Board 小卷练习、关闭取消及新增自动检查。guideDone 和 guideDismissed 分开保存，旧存档默认未学习，不重置主线。
 
 --guide-test 可单独检查练习与提示；--self-test 包含九关及新增引导检查。v0.14 默认构建输出 CiJing-v0.14-Windows，旧发布包保留。
+
+
+## v0.15 景物目标与回访
+
+GardenGoals.cs 负责第二章三个景物目标；VerseRules 仍是统一判定入口，第二章直接交给景物目标，首尾不再按圆环旋转等价处理。SceneMoment 新增雨滴、风阵与隔帘听雨记录。
+
+GameApp.Garden.cs 管理猜想、亲见确认、修改后的结果失效、物件近景与留卷；GameApp.Revisits.cs 的独立 Board 管理两个旧景小卷；主线进度与回访材料隔离。GardenValidation.cs 枚举有效排列并检查捷径。GameApp.GardenTests.cs 驱动实际 UI，支持 --journey-test。
+
+SaveData 新增 gardenGuess、gardenRead、relics、revisited；默认零值兼容旧旅程，不清空原进度。MusicBed 增加四个 coda，GameApp 增加隔帘滤波和隔水短延迟回应。
+
+默认构建输出 CiJing-v0.15-Windows。旧视频和发布包保留，新版录制素材写入单独 v015 目录；录制工具未作为本轮成片交付验收对象。

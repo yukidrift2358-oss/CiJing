@@ -4,8 +4,8 @@ namespace CiJing {
 // physical drift or unlocks a mainline ending without a complete performance.
 [Serializable] public struct SceneMoment {
  public float rain,wind,ripple,curtain,boat,loosePaper;
- public int petals,still,birds;
- public bool reflection,letter,reply,overshot;
+ public int petals,still,birds,rainShorts,rainLongs,windLongs,windMass;
+ public bool reflection,letter,reply,overshot,heardBehind,crowdedRain,crowdedWind;
  public string caption;
 }
 public static class SceneScore {
@@ -13,7 +13,7 @@ public static class SceneScore {
  public static SceneMoment Step(SceneMoment s,Stone note,int chapter){
   s.rain=Math.Max(0,s.rain-.65f);s.wind=Math.Max(0,s.wind-.6f);s.ripple=Math.Max(0,s.ripple-.32f);s.loosePaper=Math.Max(0,s.loosePaper-.3f);
   if(note.Empty){s.still++;s.caption="声歇一拍，余波渐平。";}
-  else {s.still=0;Apply(ref s,note.tone,note.rank);if(note.echo>0)Apply(ref s,note.echo-1,1);}
+  else {if(note.tone==2){if(s.rainShorts+s.rainLongs>0&&s.still==0)s.crowdedRain=true;if(s.curtain<.7f)s.heardBehind=true;if(note.rank==1)s.rainShorts++;else s.rainLongs++;}if(note.tone==4){if(s.windLongs>0&&s.wind>.35f)s.crowdedWind=true;if(note.rank==2)s.windLongs++;s.windMass+=note.Mass;}s.still=0;Apply(ref s,note.tone,note.rank);if(note.echo>0)Apply(ref s,note.echo-1,1);}
   s.reflection=s.still>=1&&s.rain<.4f&&s.ripple<.45f;
   if(s.curtain>.4f&&s.petals>=2&&s.still>=1)s.letter=true;
   if(chapter==2&&s.still>=2&&s.ripple<.35f)s.reply=true;

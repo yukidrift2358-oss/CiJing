@@ -1,6 +1,8 @@
-# 词境 v0.14
+# 词境 v0.15
 
 Unity 2022.3.62f3c1 / URP 2D / uGUI。三章九景的古风二合休闲解谜 Demo。
+
+v0.15 将雨后海棠三景改为按风雨、帘幕和水面的实际结果通关，加入隔帘猜想与亲见比照、灯芯和纸折近景、两处旧景回访、个人留卷、回信随物与完成乐句。操作见 [新版试玩说明](Docs/v015-试玩说明.md)，规则和验证边界见 [本版设计记录](Docs/v015-景物目标与旧景回访.md)。
 
 v0.14 增加随操作出现的引导、淡朱色位置提示和八个可重看的小卷主题。小卷采用独立材料，支持随时退出，收起和已学状态随存档保存。详见 [引导说明](Docs/v014-操作引导与小卷练习.md) 与 [新版试玩说明](Docs/v014-试玩说明.md)。
 
@@ -8,7 +10,7 @@ v0.14 增加随操作出现的引导、淡朱色位置提示和八个可重看�
 
 详细操作见 [试玩说明](Docs/v013-试玩说明.md)，规则、资源、制作方法和验证边界见 [音景联动与制作记录](Docs/v013-音景联动与制作记录.md)。旧版迭代文档仍在 Docs 中保留。
 
-入口场景：Assets/Scenes/CiJing.unity。批处理构建入口：CiJing.EditorTools.BuildGame.Run，默认输出到工程同级 Deliverables/CiJing-v0.14-Windows。该入口会重新创建入口场景。
+入口场景：Assets/Scenes/CiJing.unity。批处理构建入口：CiJing.EditorTools.BuildGame.Run，默认输出到工程同级 Deliverables/CiJing-v0.15-Windows。该入口会重新创建入口场景。
 
 Assets、Packages 和 ProjectSettings 可直接用于打开工程；正常运行不需要重新制作音频素材。开发用音频脚本在 Docs/AudioSource，需另装 Python 与 numpy 等依赖；开发录制工具所需 FFmpeg 不随源码压缩包附带。
 
@@ -17,3 +19,5 @@ Windows Player 的 --self-test 使用独立 test-save.json；--audio-test 检查
 李清照词句与自撰题句在游戏中分别标明。场景和机关为词意改编，不是生平、宋代音乐或古代生活的考据复原。美术含 AI 生成的水墨素材；演出为 Unity 原生二维分层，没有使用 Live2D Cubism 模型。
 
 录音采样、许可与致谢见 Docs/Audio-Credits-v05.md 和 VSCO-LICENSE.txt；本版配乐采用原采样重新编排，风雨纹理由项目制作。
+
+--journey-test 单独检查新增旅程内容。--self-test 包含九关、引导与新旅程流程，--audio-test 检查音量。开发录制入口保留，新增录像输出单独的 CiJing-Video-v015/raw；此前成片对应 v0.12，本版没有交付新成片。
