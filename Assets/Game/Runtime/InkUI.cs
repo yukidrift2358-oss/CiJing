@@ -13,19 +13,21 @@ public sealed class InkButtonGraphic:MaskableGraphic {
   v.Clear();float w=rectTransform.rect.width,h=rectTransform.rect.height;
   Color pigment=primary?new Color(.57f,.20f,.13f):new Color(.22f,.30f,.26f);
   if(Disabled)pigment=new Color(.46f,.45f,.40f);else pigment=Color.Lerp(pigment,new Color(.35f,.12f,.08f),Press*.55f);
-  Color wash=pigment;wash.a=Disabled?.06f:(primary?.86f+Focus*.1f:Focus*.09f+Press*.08f);
-  for(int i=0;i<24;i++){
-   float x0=5+(w-10)*i/24,x1=5+(w-10)*(i+1)/24;
-   float top=-5-Mathf.Sin(i*.85f)*1.3f,bottom=-h+5+Mathf.Cos(i*.7f)*1.4f;
-   InkMesh.Triangle(v,new Vector2(x0,top),new Vector2(x1,top),new Vector2(x1,bottom),wash);
-   InkMesh.Triangle(v,new Vector2(x0,top),new Vector2(x1,bottom),new Vector2(x0,bottom),wash);
+  // Open calligraphic controls: no rectangular fill or enclosing border.
+  Color wash=pigment;wash.a=Disabled?0:Focus*.065f+Press*.05f;
+  Vector2 center=new Vector2(w*.5f,-h*.5f);
+  for(int i=0;i<48;i++)InkMesh.Triangle(v,center,InkMesh.Ring(center,w*.43f,h*.39f,i,48,2),InkMesh.Ring(center,w*.43f,h*.39f,i+1,48,2),wash);
+  Color stroke=pigment;stroke.a=Disabled?.15f:(primary?.65f:.18f+Focus*.5f);
+  float length=w*(primary?.42f:.28f);
+  for(int i=0;i<20;i++){
+   float t=i/20f,u=(i+1)/20f;
+   InkMesh.Line(v,new Vector2((w-length)*.5f+t*length,-h+7+Mathf.Sin(t*8)*.8f),new Vector2((w-length)*.5f+u*length,-h+7+Mathf.Sin(u*8)*.8f),.3f+Mathf.Sin(t*Mathf.PI)*(primary?1.8f:.8f),stroke);
   }
-  Color stroke=pigment;stroke.a=Disabled?.2f:(primary?.6f:.26f+Focus*.5f);
-  for(int i=0;i<22;i++){
-   float t=i/22f,u=(i+1)/22f;float taper=Mathf.Sin(t*Mathf.PI);
-   InkMesh.Line(v,new Vector2(12+t*(w-24),-h+3+Mathf.Sin(t*14)*.7f),new Vector2(12+u*(w-24),-h+3+Mathf.Sin(u*14)*.7f),.5f+taper*(primary?1.6f:1.0f),stroke);
+  if(primary){
+   Vector2 seal=new Vector2(13,-h*.5f);Color stamp=pigment;stamp.a=Disabled?.12f:.65f;
+   for(int i=0;i<24;i++)InkMesh.Line(v,InkMesh.Ring(seal,3.5f,4.5f,i,24,1),InkMesh.Ring(seal,3.5f,4.5f,i+1,24,1),1.2f,stamp);
   }
-  if(primary){stroke.a=.45f;InkMesh.Line(v,new Vector2(6,-8),new Vector2(5,-h+8),1.3f,stroke);InkMesh.Line(v,new Vector2(w-5,-7),new Vector2(w-6,-h+6),.8f,stroke);}
+
  }
  public void Refresh(){SetVerticesDirty();}
 }
@@ -43,7 +45,7 @@ public sealed class InkButtonFeedback:MonoBehaviour,IPointerEnterHandler,IPointe
   float next=Mathf.MoveTowards(value,target,Time.unscaledDeltaTime*9),nextPress=Mathf.MoveTowards(press,targetPress,Time.unscaledDeltaTime*14);
   if(next==value&&nextPress==press&&off==disabled)return;
   value=next;press=nextPress;disabled=off;brush.Focus=value;brush.Press=press;brush.Disabled=off;brush.Refresh();
-  title.color=off?new Color(.47f,.47f,.41f):(primary?new Color(.99f,.96f,.87f):Color.Lerp(new Color(.16f,.25f,.24f),new Color(.55f,.20f,.14f),value));
+  title.color=off?new Color(.47f,.47f,.41f):(primary?Color.Lerp(new Color(.58f,.22f,.15f),new Color(.36f,.12f,.08f),Mathf.Max(value*.45f,press)):Color.Lerp(new Color(.16f,.25f,.24f),new Color(.55f,.20f,.14f),value));
  }
  void OnDisable(){hover=pressed=focus=false;}
 }

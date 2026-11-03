@@ -22,7 +22,10 @@ Shader "CiJing/PaperUI" {
    float hash(float2 p){return frac(sin(dot(p,float2(127.1,311.7)))*43758.5453);}
    fixed4 frag(v2f i):SV_Target {
     float2 edge=min(i.uv,1-i.uv);float grain=hash(floor(i.world.xy*1.5));
-    float feather=smoothstep(0,.012,min(edge.x,edge.y)+sin(i.uv.x*181)*.0015+sin(i.uv.y*217)*.001);
+    float2 q=(i.uv-.5)*2;
+    float field=q.x*q.x+q.y*q.y;
+    float drift=sin(i.uv.x*21+i.uv.y*8)*.035+sin(i.uv.y*33)*.018;
+    float feather=1-smoothstep(.62,1.5,field+drift);
     float fiber=sin(i.world.x*.32+sin(i.world.y*.1))*sin(i.world.y*.75)*.003;
     fixed4 c=i.color;c.rgb*=.985+grain*.021+fiber;c.a*=feather;
     #ifdef UNITY_UI_CLIP_RECT
